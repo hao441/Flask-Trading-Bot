@@ -2,7 +2,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 >>>>>>> a115d0c (test)
+=======
+>>>>>>> 0da48ea (first commit)
+>>>>>>> 8a6c7d5 (first commit)
 # Flask Trading Bot
 A trading bot built on flask that has the ability to convert alert notifications from TradingView strategies into futures orders on exchanges.
 
@@ -109,4 +113,11 @@ Flask Trading Bot
 =======
 >>>>>>> 7072f48 (README Updated)
 =======
+<<<<<<< HEAD
 >>>>>>> a115d0c (test)
+=======
+=======
+Flask Trading Bot
+>>>>>>> 5e75ecc (first commit)
+>>>>>>> 0da48ea (first commit)
+>>>>>>> 8a6c7d5 (first commit)
