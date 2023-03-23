@@ -6,9 +6,12 @@ app = Flask(__name__)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 api_key=config.BYBIT_TEST_API_KEY
 secret_key=config.BYBTI_TEST_API_SECRET
 =======
+=======
+>>>>>>> f3c3397 (Bybit Code)
 @app.route("/")
 def hello_world():
 	return "<p>Hi, World!</p>"
@@ -17,6 +20,7 @@ def hello_world():
 @app.route("/bybit")
 api_key='XXXXXXXXX'
 secret_key='XXXXXXXXX'
+<<<<<<< HEAD
 >>>>>>> 26bac21 (Bybit Code)
 =======
 api_key=config.BYBIT_TEST_API_KEY
@@ -26,11 +30,14 @@ secret_key=config.BYBTI_TEST_API_SECRET
 api_key=config.BYBIT_TEST_API_KEY
 secret_key=config.BYBTI_TEST_API_SECRET
 >>>>>>> a115d0c (test)
+=======
+>>>>>>> f3c3397 (Bybit Code)
 httpClient=requests.Session()
 recv_window=str(5000)
 url="https://api-testnet.bybit.com" # Testnet endpoint
 
 def HTTP_Request(endPoint,method,payload,Info):
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -307,6 +314,8 @@ def helloWorld():
 	return data["leverage"]
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> f3c3397 (Bybit Code)
     global time_stamp
     time_stamp=str(int(time.time() * 10 ** 3))
     signature=genSignature(payload)
@@ -324,6 +333,7 @@ def helloWorld():
         response = httpClient.request(method, url+endPoint+"?"+payload, headers=headers)
     print(response.text)
     print(Info + " Elapsed Time : " + str(response.elapsed))
+<<<<<<< HEAD
 =======
 	}
 
@@ -386,6 +396,26 @@ def setLeverage(leverage):
 	return response
 
 <<<<<<< HEAD
+=======
+
+def genSignature(payload):
+    param_str= str(time_stamp) + api_key + recv_window + payload
+    hash = hmac.new(bytes(secret_key, "utf-8"), param_str.encode("utf-8"),hashlib.sha256)
+    signature = hash.hexdigest()
+    return signature
+
+#Create Order
+endpoint="/contract/v3/private/order/create"
+method="POST"
+orderLinkId=uuid.uuid4().hex
+params='{"symbol": "BTCUSDT","side": "Buy","positionIdx": 1,"orderType": "Limit","qty": "0.001","price": "10000","timeInForce": "GoodTillCancel","orderLinkId": "' + orderLinkId + '"}'
+HTTP_Request(endpoint,method,params,"Create")
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+	data = json.loads(request.data)
+
+>>>>>>> f3c3397 (Bybit Code)
 	if data['pass'] != config.WEBHOOK_PASS:
 		return {
 			"code":"error",
@@ -395,6 +425,7 @@ def setLeverage(leverage):
 	return {
 		"code":"success",
 		"message":"success"
+<<<<<<< HEAD
 	}
 >>>>>>> 26bac21 (Bybit Code)
 =======
@@ -550,3 +581,6 @@ def helloWorld():
 >>>>>>> c818673 (Bot Complete and Operational)
 =======
 >>>>>>> a115d0c (test)
+=======
+	}
+>>>>>>> f3c3397 (Bybit Code)
