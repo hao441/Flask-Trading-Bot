@@ -24,11 +24,15 @@ A trading bot built on flask that has the ability to convert alert notifications
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> db1a3ca (README Updated)
 The Bot is supports four core functions that manage the alerts.
 >>>>>>> 7072f48 (README Updated)
 =======
 The Bot supports four core functions that manage the alerts.
 >>>>>>> d42a58a (README Updated)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> a115d0c (test)
@@ -36,7 +40,12 @@ The Bot supports four core functions that manage the alerts.
 The Bot is supports four core functions that manage the alerts.
 >>>>>>> 7072f48 (README Updated)
 >>>>>>> 1770fcb (README Updated)
+<<<<<<< HEAD
 >>>>>>> f942976 (README Updated)
+=======
+=======
+>>>>>>> db1a3ca (README Updated)
+>>>>>>> e1c871e (README Updated)
 
 ## Place Long
     
