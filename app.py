@@ -35,6 +35,7 @@ def HTTP_Request(endPoint,method,payload,Info):
 	time_stamp=str(int(time.time() * 10 ** 3))
 	signature=genSignature(payload)
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if(method=="POST"):
 		headers = {
 			'X-BAPI-API-KEY': api_key,
@@ -55,9 +56,19 @@ def HTTP_Request(endPoint,method,payload,Info):
 		'X-BAPI-RECV-WINDOW': recv_window,
 		'Content-Type': 'application/json'
 	}
+=======
+>>>>>>> c818673 (Bot Complete and Operational)
 	if(method=="POST"):
-		response = httpClient.request(method, url+endPoint, headers=headers, data=payload)
+		headers = {
+			'X-BAPI-API-KEY': api_key,
+			'X-BAPI-SIGN': signature,
+			'X-BAPI-SIGN-TYPE': '2',
+			'X-BAPI-TIMESTAMP': time_stamp,
+			'X-BAPI-RECV-WINDOW': recv_window,
+			'Content-Type': 'application/json'
+		}
 	else:
+<<<<<<< HEAD
 		response = httpClient.request(method, url+endPoint+"?"+payload, headers=headers)
 	print(response.text)
 	print(Info + " Elapsed Time : " + str(response.elapsed))
@@ -70,11 +81,15 @@ def HTTP_GET_Request(endPoint,method,payload,Info):
 	signature=genSignature(payload)
 	headers = {
 >>>>>>> b41ee18 (Bybit Requests)
+=======
+		headers = {
+>>>>>>> c818673 (Bot Complete and Operational)
 		'X-BAPI-SIGN': signature,
 		'X-BAPI-API-KEY': api_key,
 		'X-BAPI-TIMESTAMP': time_stamp,
 		'X-BAPI-RECV-WINDOW': recv_window,
 		'cdn-request-id': 'test-001'
+<<<<<<< HEAD
 <<<<<<< HEAD
 		}
 
@@ -299,6 +314,26 @@ def helloWorld():
 	print(Info + " Elapsed Time : " + str(response.elapsed))
 	return {"result": response.json()}
 >>>>>>> b41ee18 (Bybit Requests)
+=======
+		}
+
+	if(method=="POST"):
+		response = httpClient.request(method, url+endPoint, headers=headers, data=payload)
+	else:
+		response = httpClient.request(method, url+endPoint+"?"+payload, headers=headers)
+	
+	
+	jsonResponse = response.json()
+
+	if Info == "Balance":
+		return jsonResponse["result"]["list"][0]["coin"][0]["walletBalance"]
+	elif Info == "Price":
+		return jsonResponse["result"]["list"][0]["lastPrice"]
+	elif Info == "Position":
+		return jsonResponse["result"]["list"][0]["avgPrice"]
+	else:
+		return jsonResponse
+>>>>>>> c818673 (Bot Complete and Operational)
 
 def genSignature(payload):
 	param_str= str(time_stamp) + api_key + recv_window + payload
@@ -310,12 +345,27 @@ def getWalletBalance():
 	endpoint="/v5/account/wallet-balance"
 	method="GET"
 	params="accountType=CONTRACT&coin=USDT"
-	response = HTTP_GET_Request(endpoint,method,params,"Balance")
+	response = HTTP_Request(endpoint,method,params,"Balance")
 	print(response)
 	return response
 
-def setLeverage():
-	return
+def switchToIsolated(leverage):
+	endpoint="/v5/position/switch-isolated"
+	method="POST"
+	preParams={"category":"linear","symbol":"BTCUSDT","tradeMode":1, "buyLeverage":leverage, "sellLeverage":leverage}
+	postParams=json.dumps(preParams)
+	response = HTTP_Request(endpoint,method,postParams,"Leverage")
+	print(response)
+	return response
+
+def setLeverage(leverage):
+	endpoint="/v5/position/set-leverage"
+	method="POST"
+	preParams={"category":"linear","symbol":"BTCUSDT","buyLeverage":leverage, "sellLeverage":leverage}
+	postParams=json.dumps(preParams)
+	response = HTTP_Request(endpoint,method,postParams,"Leverage")
+	print(response)
+	return response
 
 <<<<<<< HEAD
 	if data['pass'] != config.WEBHOOK_PASS:
@@ -331,25 +381,30 @@ def setLeverage():
 >>>>>>> 26bac21 (Bybit Code)
 =======
 def checkPrice():
-	return
+	endpoint="/v5/market/tickers"
+	method="GET"
+	params="category=linear&symbol=BTCUSDT"
+	response = HTTP_Request(endpoint,method,params,"Price")
+	print(response)
+	return response
 
-def placeOrder(symbol, side, quantity):
+def placeOrder(side, quantity, stopLoss, takeProfit):
     # #Create Order
     endpoint="/v5/order/create"
     method="POST"
     orderLinkId=uuid.uuid4().hex
-    preParams={"category":"linear","symbol":symbol,"side":side,"orderType":"Market","qty":quantity,"timeInForce":"IOC","positionIdx":0}
+    preParams={"category":"linear","symbol":"BTCUSDT","side":side,"orderType":"Market","qty":quantity,"timeInForce":"IOC","positionIdx":0, "stopLoss": stopLoss, "takeProfit":takeProfit}
     postParams=json.dumps(preParams)
     response = HTTP_Request(endpoint,method,postParams,"Create")
     print(response)
     return {'response': response}
 
-def closePosition(symbol, side):
+def closePosition(side):
 	endpoint="/v5/order/create"
 	method="POST"
 	direction = "Sell" if side == "Buy" else "Buy"
 	print(f'direction is {direction}')
-	preParams = {"category":"linear","symbol":symbol,"side":direction,"orderType":"Market","qty":"0","timeInForce":"IOC","positionIdx":0, "reduceOnly":"true"}
+	preParams = {"category":"linear","symbol":"BTCUSDT","side":direction,"orderType":"Market","qty":"0","timeInForce":"IOC","positionIdx":0, "reduceOnly":"true"}
 	postParams = json.dumps(preParams)
 	response = HTTP_Request(endpoint,method,postParams,"Create")
 	return {'response': response}
@@ -361,41 +416,117 @@ def cancelAllOrders():
     response = HTTP_Request(endpoint,method,params,"Cancel-all")
     return {'response': response}
 
-@app.route('/cancelall', methods=['POST'])
-def cancelAllOrders():
-    endpoint="/v5/order/cancel-all"
-    method="POST"
-    params='{"category":"linear","settleCoin":"BTC"}'
-    response = HTTP_Request(endpoint,method,params,"Cancel-all")
-    return {'response': response}
-
-@app.route('/walletbalance', methods=['GET'])
-def walletBalance():
-	response = getWalletBalance()
+def getPosition():
+	endpoint="/v5/position/list"
+	method="GET"
+	params="category=linear&symbol=BTCUSDT"
+	response = HTTP_Request(endpoint,method,params,"Position")
 	print(response)
 	return response
 
+def tradingStopUpdate(stopLoss, takeProfit):
+    endpoint="/v5/position/trading-stop"
+    method="POST"
+    preParams={"category":"linear","symbol":"BTCUSDT","stopLoss": stopLoss,"takeProfit":takeProfit, "positionIdx":0}
+    postParams=json.dumps(preParams)
+    response = HTTP_Request(endpoint,method,postParams,"Trading-Stop-Update")
+    return {'response': response}
+
+@app.route('/getposition', methods=['POST'])
+def requestPosition():
+	return getPosition()
+
 @app.route('/placelong', methods=['POST'])
 def placeLong():
-	longResponse = placeOrder("BTCUSDT", "Buy", "0.01")
-	return {"result": longResponse}
+	data = json.loads(request.data)
+	leverage = data["leverage"]
+
+	closePosition("Sell")
+	cancelAllOrders()
+	switchToIsolated(leverage)
+	setLeverage(leverage)
+	
+	stopLossPercentage = 0.1
+	takeProfitPercentage = 0.1
+
+	walletBalance = float(getWalletBalance())
+	currentPrice = float(checkPrice())
+	quantity = str(round(((walletBalance*0.95)*int(leverage))/currentPrice,1))
+	stopLoss = str(round(currentPrice*(1-stopLossPercentage), 1))
+	takeProfit = str(round(currentPrice*(1+takeProfitPercentage),1))
+
+	print(f'takeprofit is: {takeProfit}')
+
+	longResponse = placeOrder("Buy", quantity, stopLoss, takeProfit)
+	print(longResponse)
+
+	# time.sleep(5)
+
+	averagePrice = float(getPosition())
+	updatedStopLoss = str(round(averagePrice*(1-stopLossPercentage), 1))
+	updatedTakeProfit = str(round(averagePrice*(1+takeProfitPercentage),1))
+	tradingStopResponse = tradingStopUpdate(updatedStopLoss,updatedTakeProfit)
+
+	return {"placeOrderResponse":longResponse, "tradingStopResponse":tradingStopResponse}
 
 @app.route('/placeshort', methods=['POST'])
 def placeShort():
-    shortResponse = placeOrder("BTCUSDT", "Sell", "0.01")
-    print(shortResponse)
-    return {"result": shortResponse}
+	data = json.loads(request.data)
+	leverage = data["leverage"]
+
+	closePosition("Buy")
+	cancelAllOrders()
+	switchToIsolated(leverage)
+	setLeverage(leverage)
+	
+	stopLossPercentage = 0.1
+	takeProfitPercentage = 0.1
+
+	walletBalance = float(getWalletBalance())
+	currentPrice = float(checkPrice())
+	quantity = str(round(((walletBalance*0.95)*int(leverage))/currentPrice,1))
+	stopLoss = str(round(currentPrice*(1+stopLossPercentage), 1))
+	takeProfit = str(round(currentPrice*(1-takeProfitPercentage),1))
+
+	print(f'takeprofit is: {takeProfit}')
+
+	longResponse = placeOrder("Sell", quantity, stopLoss, takeProfit)
+	print(longResponse)
+
+	# time.sleep(5)
+
+	averagePrice = float(getPosition())
+	updatedStopLoss = str(round(averagePrice*(1+stopLossPercentage), 1))
+	updatedTakeProfit = str(round(averagePrice*(1-takeProfitPercentage),1))
+	tradingStopResponse = tradingStopUpdate(updatedStopLoss,updatedTakeProfit)
+
+	return {"placeOrderResponse":longResponse, "tradingStopResponse":tradingStopResponse}
 
 @app.route('/closelong', methods=['POST'])
 def closeLong():
 	cancelAllOrders()
-	closeLongResponse = closePosition("BTCUSDT", "Buy")
-	print(f'closeLongResponse: {closeLongResponse}')
+	closeLongResponse = closePosition("Buy")
+	
+	# time.sleep(5)
+
 	return {'response': closeLongResponse}
 
 @app.route('/closeshort', methods=['POST'])
 def closeShort():
 	cancelAllOrders()
+<<<<<<< HEAD
 	closeShortResponse = closePosition("BTCUSDT", "Sell")
 	return {'response': closeShortResponse}
 >>>>>>> b41ee18 (Bybit Requests)
+=======
+	closeShortResponse = closePosition("Sell")
+
+	# time.sleep(5)
+
+	return {'response': closeShortResponse}
+
+@app.route('/test', methods=['POST'])
+def helloWorld():
+	data = json.loads(request.data)
+	return data["leverage"]
+>>>>>>> c818673 (Bot Complete and Operational)
