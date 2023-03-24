@@ -8,8 +8,12 @@ The Bot supports four core functions that manage the alerts.
 # Flask Trading Bot
 A trading bot built on flask that has the ability to convert alert notifications from TradingView strategies into futures orders on exchanges.
 
+<<<<<<< HEAD
 The Bot is supports four core functions that manage the alerts.
 >>>>>>> 7072f48 (README Updated)
+=======
+The Bot supports four core functions that manage the alerts.
+>>>>>>> d42a58a (README Updated)
 
 ## Place Long
     
