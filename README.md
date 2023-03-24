@@ -1,12 +1,18 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> a115d0c (test)
 =======
 >>>>>>> 0da48ea (first commit)
+<<<<<<< HEAD
 >>>>>>> 8a6c7d5 (first commit)
+=======
+=======
+>>>>>>> 1770fcb (README Updated)
+>>>>>>> f942976 (README Updated)
 # Flask Trading Bot
 A trading bot built on flask that has the ability to convert alert notifications from TradingView strategies into futures orders on exchanges.
 
@@ -16,6 +22,7 @@ The Bot supports four core functions that manage the alerts.
 # Flask Trading Bot
 A trading bot built on flask that has the ability to convert alert notifications from TradingView strategies into futures orders on exchanges.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 The Bot is supports four core functions that manage the alerts.
 >>>>>>> 7072f48 (README Updated)
@@ -23,7 +30,13 @@ The Bot is supports four core functions that manage the alerts.
 The Bot supports four core functions that manage the alerts.
 >>>>>>> d42a58a (README Updated)
 =======
+<<<<<<< HEAD
 >>>>>>> a115d0c (test)
+=======
+The Bot is supports four core functions that manage the alerts.
+>>>>>>> 7072f48 (README Updated)
+>>>>>>> 1770fcb (README Updated)
+>>>>>>> f942976 (README Updated)
 
 ## Place Long
     
@@ -107,11 +120,15 @@ Exchange API Sequence
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1770fcb (README Updated)
 =======
 Flask Trading Bot
 >>>>>>> 5e75ecc (first commit)
 =======
 >>>>>>> 7072f48 (README Updated)
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> a115d0c (test)
@@ -120,4 +137,9 @@ Flask Trading Bot
 Flask Trading Bot
 >>>>>>> 5e75ecc (first commit)
 >>>>>>> 0da48ea (first commit)
+<<<<<<< HEAD
 >>>>>>> 8a6c7d5 (first commit)
+=======
+=======
+>>>>>>> 1770fcb (README Updated)
+>>>>>>> f942976 (README Updated)
