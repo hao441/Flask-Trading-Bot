@@ -5,6 +5,8 @@ app = Flask(__name__)
 
 api_key=os.getenv('BYBIT_TEST_API_KEY')
 secret_key=os.getenv('BYBIT_TEST_API_SECRET')
+
+print(f"api_key is: {api_key}")
 httpClient=requests.Session()
 recv_window=str(5000)
 url="https://api-testnet.bybit.com" # Testnet endpoint
@@ -19,8 +21,8 @@ def HTTP_Request(endPoint,method,payload,Info):
 	signature=genSignature(payload)
 	if(method=="POST"):
 		headers = {
-			'X-BAPI-API-KEY': api_key,
-			'X-BAPI-SIGN': signature,
+			'X-BAPI-API-KEY': str(api_key),
+			'X-BAPI-SIGN': str(signature),
 			'X-BAPI-SIGN-TYPE': '2',
 			'X-BAPI-TIMESTAMP': time_stamp,
 			'X-BAPI-RECV-WINDOW': recv_window,
@@ -40,7 +42,7 @@ def HTTP_Request(endPoint,method,payload,Info):
 	else:
 		response = httpClient.request(method, url+endPoint+"?"+payload, headers=headers)
 	
-	
+	print(response)
 	jsonResponse = response.json()
 
 	if Info == "Balance":
@@ -53,8 +55,8 @@ def HTTP_Request(endPoint,method,payload,Info):
 		return jsonResponse
 
 def genSignature(payload):
-	param_str= str(time_stamp) + api_key + recv_window + payload
-	hash = hmac.new(bytes(secret_key, "utf-8"), param_str.encode("utf-8"),hashlib.sha256)
+	param_str= str(time_stamp) + str(api_key) + recv_window + payload
+	hash = hmac.new(bytes(str(secret_key), "utf-8"), param_str.encode("utf-8"),hashlib.sha256)
 	signature = hash.hexdigest()
 	return signature
 
