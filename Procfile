@@ -1,1 +1,1 @@
-web: gunicorn flasktv:app
+web: gunicorn -w 4 flasktv:app
