@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 api_key=config.BYBIT_TEST_API_KEY
 secret_key=config.BYBTI_TEST_API_SECRET
 =======
@@ -21,6 +22,10 @@ secret_key='XXXXXXXXX'
 api_key=config.BYBIT_TEST_API_KEY
 secret_key=config.BYBTI_TEST_API_SECRET
 >>>>>>> b41ee18 (Bybit Requests)
+=======
+api_key=config.BYBIT_TEST_API_KEY
+secret_key=config.BYBTI_TEST_API_SECRET
+>>>>>>> a115d0c (test)
 httpClient=requests.Session()
 recv_window=str(5000)
 url="https://api-testnet.bybit.com" # Testnet endpoint
@@ -28,14 +33,20 @@ url="https://api-testnet.bybit.com" # Testnet endpoint
 def HTTP_Request(endPoint,method,payload,Info):
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> b41ee18 (Bybit Requests)
+=======
+>>>>>>> a115d0c (test)
 
 	global time_stamp
 	time_stamp=str(int(time.time() * 10 ** 3))
 	signature=genSignature(payload)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a115d0c (test)
 	if(method=="POST"):
 		headers = {
 			'X-BAPI-API-KEY': api_key,
@@ -47,6 +58,7 @@ def HTTP_Request(endPoint,method,payload,Info):
 		}
 	else:
 		headers = {
+<<<<<<< HEAD
 =======
 	headers = {
 		'X-BAPI-API-KEY': api_key,
@@ -84,6 +96,8 @@ def HTTP_GET_Request(endPoint,method,payload,Info):
 =======
 		headers = {
 >>>>>>> c818673 (Bot Complete and Operational)
+=======
+>>>>>>> a115d0c (test)
 		'X-BAPI-SIGN': signature,
 		'X-BAPI-API-KEY': api_key,
 		'X-BAPI-TIMESTAMP': time_stamp,
@@ -91,6 +105,9 @@ def HTTP_GET_Request(endPoint,method,payload,Info):
 		'cdn-request-id': 'test-001'
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a115d0c (test)
 		}
 
 	if(method=="POST"):
@@ -288,6 +305,7 @@ def closeShort():
 def helloWorld():
 	data = json.loads(request.data)
 	return data["leverage"]
+<<<<<<< HEAD
 =======
     global time_stamp
     time_stamp=str(int(time.time() * 10 ** 3))
@@ -530,3 +548,5 @@ def helloWorld():
 	data = json.loads(request.data)
 	return data["leverage"]
 >>>>>>> c818673 (Bot Complete and Operational)
+=======
+>>>>>>> a115d0c (test)

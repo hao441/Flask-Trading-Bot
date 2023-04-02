@@ -1,9 +1,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a115d0c (test)
 # Flask Trading Bot
 A trading bot built on flask that has the ability to convert alert notifications from TradingView strategies into futures orders on exchanges.
 
 The Bot supports four core functions that manage the alerts.
+<<<<<<< HEAD
 =======
 # Flask Trading Bot
 A trading bot built on flask that has the ability to convert alert notifications from TradingView strategies into futures orders on exchanges.
@@ -14,6 +18,8 @@ The Bot is supports four core functions that manage the alerts.
 =======
 The Bot supports four core functions that manage the alerts.
 >>>>>>> d42a58a (README Updated)
+=======
+>>>>>>> a115d0c (test)
 
 ## Place Long
     
@@ -96,8 +102,11 @@ Exchange API Sequence
 2. Close all Short Positions
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 Flask Trading Bot
 >>>>>>> 5e75ecc (first commit)
 =======
 >>>>>>> 7072f48 (README Updated)
+=======
+>>>>>>> a115d0c (test)
