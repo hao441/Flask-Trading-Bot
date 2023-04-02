@@ -170,6 +170,7 @@ def placeLong():
 	stopLoss = str(round(currentPrice*(1-stopLossPercentage), 1))
 	takeProfit = str(round(currentPrice*(1+takeProfitPercentage),1))
 
+	print(f'wallet balance is: {walletBalance}')
 	print(f'takeprofit is: {takeProfit}')
 
 	longResponse = placeOrder("Buy", quantity, stopLoss, takeProfit)
