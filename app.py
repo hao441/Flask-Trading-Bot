@@ -141,6 +141,8 @@ def requestPosition():
 def placeLong():
 	data = json.loads(request.data)
 	leverage = data["leverage"]
+	receivedStopLoss = data["stopLoss"]
+	receivedTakeProfile = data["takeProfit"]		
 
 	closePosition("Sell")
 	cancelAllOrders()
