@@ -12,7 +12,10 @@ entrypoints==0.4
 fastjsonschema==2.16.2
 Flask==2.2.3
 google-auth==1.4.2
+<<<<<<< HEAD
 gunicorn==20.1.0
+=======
+>>>>>>> a115d0c (test)
 idna==2.8
 iniconfig==2.0.0
 ipython-genutils==0.2.0
@@ -57,7 +60,10 @@ tornado==4.5.3
 tqdm==4.64.1
 traitlets==5.8.1
 urllib3==1.24.3
+<<<<<<< HEAD
 waitress==2.1.2
+=======
+>>>>>>> a115d0c (test)
 wcwidth==0.2.6
 webencodings==0.5.1
 Werkzeug==2.2.3
