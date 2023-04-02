@@ -28,6 +28,7 @@ gunicorn==20.1.0
 gunicorn==20.1.0
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 6d40183 (test)
 <<<<<<< HEAD
 >>>>>>> 63d5547 (test)
@@ -35,7 +36,16 @@ gunicorn==20.1.0
 =======
 >>>>>>> a115d0c (test)
 >>>>>>> 5e6e7c8 (test)
+<<<<<<< HEAD
 >>>>>>> 5fabcaa (test)
+=======
+=======
+>>>>>>> a115d0c (test)
+=======
+>>>>>>> 6d40183 (test)
+>>>>>>> 725a880 (test)
+>>>>>>> 6f3c2c2 (test)
+>>>>>>> 3710670 (test)
 idna==2.8
 iniconfig==2.0.0
 ipython-genutils==0.2.0
@@ -96,6 +106,7 @@ waitress==2.1.2
 waitress==2.1.2
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 6d40183 (test)
 <<<<<<< HEAD
 >>>>>>> 63d5547 (test)
@@ -103,7 +114,16 @@ waitress==2.1.2
 =======
 >>>>>>> a115d0c (test)
 >>>>>>> 5e6e7c8 (test)
+<<<<<<< HEAD
 >>>>>>> 5fabcaa (test)
+=======
+=======
+>>>>>>> a115d0c (test)
+=======
+>>>>>>> 6d40183 (test)
+>>>>>>> 725a880 (test)
+>>>>>>> 6f3c2c2 (test)
+>>>>>>> 3710670 (test)
 wcwidth==0.2.6
 webencodings==0.5.1
 Werkzeug==2.2.3
