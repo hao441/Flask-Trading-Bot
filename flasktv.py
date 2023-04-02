@@ -238,8 +238,10 @@ def closeShort():
 
 @app.route('/test', methods=['POST'])
 def helloWorld():
-	data = json.loads(request.data)
-	return data["leverage"]
+	print(getWalletBalance())
+	return ""
+	# data = json.loads(request.data)
+	# return data["leverage"]
 
 if __name__ == '__main__':
 	app.run()
