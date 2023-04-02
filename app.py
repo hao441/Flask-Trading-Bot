@@ -1,4 +1,4 @@
-import requests, json, config, time, hashlib, hmac, uuid
+import requests, json, config, time, hashlib, hmac, uuid, app
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
