@@ -3,8 +3,8 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-api_key=os.getenv('BYBIT_TEST_API_KEY')
-secret_key=os.getenv('BYBIT_TEST_API_SECRET')
+api_key=str(os.getenv('BYBIT_TEST_API_KEY'))
+secret_key=str(os.getenv('BYBIT_TEST_API_SECRET'))
 
 print(f"api_key is: {api_key}")
 httpClient=requests.Session()
