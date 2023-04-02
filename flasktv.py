@@ -6,10 +6,9 @@ app = Flask(__name__)
 api_key=str(os.getenv('BYBIT_TEST_API_KEY'))
 secret_key=str(os.getenv('BYBIT_TEST_API_SECRET'))
 
-print(f"api_key is:" {api_key})
-print(f"secret_key is:" {secret_key})
-
 print(f"api_key is: {api_key}")
+print(f"secret_key is: {secret_key}")
+
 httpClient=requests.Session()
 recv_window=str(5000)
 url="https://api-testnet.bybit.com" # Testnet endpoint
