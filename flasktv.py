@@ -50,6 +50,7 @@ def HTTP_Request(endPoint,method,payload,Info):
 	elif Info == "Price":
 		return jsonResponse["result"]["list"][0]["lastPrice"]
 	elif Info == "Position":
+		print(jsonResponse)
 		return jsonResponse["result"]["list"][0]["avgPrice"]
 	else:
 		return jsonResponse
