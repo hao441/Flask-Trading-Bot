@@ -21,8 +21,8 @@ def HTTP_Request(endPoint,method,payload,Info):
 	signature=genSignature(payload)
 	if(method=="POST"):
 		headers = {
-			'X-BAPI-API-KEY': str(api_key),
-			'X-BAPI-SIGN': str(signature),
+			'X-BAPI-API-KEY': api_key,
+			'X-BAPI-SIGN': signature,
 			'X-BAPI-SIGN-TYPE': '2',
 			'X-BAPI-TIMESTAMP': time_stamp,
 			'X-BAPI-RECV-WINDOW': recv_window,
