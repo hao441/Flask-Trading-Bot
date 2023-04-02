@@ -1,1 +1,1 @@
-web: gunicorn -w 4 flasktv:app
+web: gunicorn -w 4 'flasktv:create_app()'
