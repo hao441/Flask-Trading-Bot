@@ -234,3 +234,6 @@ def closeShort():
 def helloWorld():
 	data = json.loads(request.data)
 	return data["leverage"]
+
+if __name__ == '__main__':
+	app.run()
