@@ -133,6 +133,10 @@ def tradingStopUpdate(stopLoss, takeProfit):
     response = HTTP_Request(endpoint,method,postParams,"Trading-Stop-Update")
     return {'response': response}
 
+@app.route('/', methods=['GET'])
+def deaultGet():
+	return "Hello"
+
 @app.route('/getposition', methods=['POST'])
 def requestPosition():
 	return getPosition()
