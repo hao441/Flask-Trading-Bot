@@ -3,8 +3,8 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-api_key=os.environ['BYBIT_TEST_API_KEY']
-secret_key=os.environ['BYBIT_TEST_API_SECRET']
+api_key=os.getenv('BYBIT_TEST_API_KEY')
+secret_key=os.getenv('BYBIT_TEST_API_SECRET')
 httpClient=requests.Session()
 recv_window=str(5000)
 url="https://api-testnet.bybit.com" # Testnet endpoint
