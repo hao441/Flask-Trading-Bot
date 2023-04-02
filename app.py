@@ -1,4 +1,4 @@
-import requests, json, config, time, hashlib, hmac, base64, uuid
+import requests, json, config, time, hashlib, hmac, uuid
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -8,6 +8,9 @@ secret_key=config.BYBTI_TEST_API_SECRET
 httpClient=requests.Session()
 recv_window=str(5000)
 url="https://api-testnet.bybit.com" # Testnet endpoint
+
+def create_app():
+	return app
 
 def HTTP_Request(endPoint,method,payload,Info):
 
