@@ -1,4 +1,4 @@
-import requests, json, os, time, hashlib, hmac, uuid
+import requests, json, os, time, hashlib, hmac, uuid, math
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -170,7 +170,7 @@ def placeLong():
 
 	walletBalance = float(getWalletBalance())
 	currentPrice = float(checkPrice())
-	quantity = str(round(((walletBalance*0.95)*int(leverage))/currentPrice,2))
+	quantity = str(math.floor(((walletBalance*0.95)*int(leverage))/currentPrice)/100.0)
 	stopLoss = str(round(currentPrice*(1-stopLossPercentage), 2))
 	takeProfit = str(round(currentPrice*(1+takeProfitPercentage),2))
 
