@@ -2,9 +2,13 @@ import requests, json, os, time, hashlib, hmac, uuid
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+#test env variables
+api_key='NiCJLp1G33Jdus1Rnr'
+secret_key='ZEVyJNm3rSa2JwrjjT1HY1TXU62gSf3grgAZ'
 
-api_key=str(os.getenv('BYBIT_TEST_API_KEY'))
-secret_key=str(os.getenv('BYBIT_TEST_API_SECRET'))
+#prod env variables
+# api_key=str(os.getenv('BYBIT_TEST_API_KEY'))
+# secret_key=str(os.getenv('BYBIT_TEST_API_SECRET'))
 
 print(f"api_key is: {api_key}")
 print(f"secret_key is: {secret_key}")
@@ -238,10 +242,8 @@ def closeShort():
 
 @app.route('/test', methods=['POST'])
 def helloWorld():
-	print(getWalletBalance())
-	return ""
-	# data = json.loads(request.data)
-	# return data["leverage"]
+	data = json.loads(request.data)
+	return data["leverage"]
 
 if __name__ == '__main__':
 	app.run()
