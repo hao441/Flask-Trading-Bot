@@ -199,8 +199,8 @@ def placeShort():
 	switchToIsolated(leverage)
 	setLeverage(leverage)
 	
-	stopLossPercentage = data["stopLoss"]
-	takeProfitPercentage = data["takeProfit"]
+	stopLossPercentage = 0.1
+	takeProfitPercentage = 0.1
 
 	walletBalance = float(getWalletBalance())
 	currentPrice = float(checkPrice())
