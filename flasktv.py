@@ -204,7 +204,7 @@ def placeShort():
 
 	walletBalance = float(getWalletBalance())
 	currentPrice = float(checkPrice())
-	quantity = str(math.floor((((walletBalance*0.95)*int(leverage))/currentPrice)*100)/100.0)
+	quantity = str(math.floor((((walletBalance*0.99)*int(leverage))/currentPrice)*100)/100.0)
 	stopLoss = str(round(currentPrice*(1+stopLossPercentage), 1))
 	takeProfit = str(round(currentPrice*(1-takeProfitPercentage),1))
 
