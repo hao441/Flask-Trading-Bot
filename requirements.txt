@@ -12,40 +12,7 @@ entrypoints==0.4
 fastjsonschema==2.16.2
 Flask==2.2.3
 google-auth==1.4.2
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 gunicorn==20.1.0
-=======
-<<<<<<< HEAD
->>>>>>> a115d0c (test)
-=======
->>>>>>> 6d40183 (test)
->>>>>>> 725a880 (test)
-=======
->>>>>>> a115d0c (test)
-=======
-gunicorn==20.1.0
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 6d40183 (test)
-<<<<<<< HEAD
->>>>>>> 63d5547 (test)
-=======
-=======
->>>>>>> a115d0c (test)
->>>>>>> 5e6e7c8 (test)
-<<<<<<< HEAD
->>>>>>> 5fabcaa (test)
-=======
-=======
->>>>>>> a115d0c (test)
-=======
->>>>>>> 6d40183 (test)
->>>>>>> 725a880 (test)
->>>>>>> 6f3c2c2 (test)
->>>>>>> 3710670 (test)
 idna==2.8
 iniconfig==2.0.0
 ipython-genutils==0.2.0
@@ -90,40 +57,7 @@ tornado==4.5.3
 tqdm==4.64.1
 traitlets==5.8.1
 urllib3==1.24.3
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 waitress==2.1.2
-=======
-<<<<<<< HEAD
->>>>>>> a115d0c (test)
-=======
->>>>>>> 6d40183 (test)
->>>>>>> 725a880 (test)
-=======
->>>>>>> a115d0c (test)
-=======
-waitress==2.1.2
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 6d40183 (test)
-<<<<<<< HEAD
->>>>>>> 63d5547 (test)
-=======
-=======
->>>>>>> a115d0c (test)
->>>>>>> 5e6e7c8 (test)
-<<<<<<< HEAD
->>>>>>> 5fabcaa (test)
-=======
-=======
->>>>>>> a115d0c (test)
-=======
->>>>>>> 6d40183 (test)
->>>>>>> 725a880 (test)
->>>>>>> 6f3c2c2 (test)
->>>>>>> 3710670 (test)
 wcwidth==0.2.6
 webencodings==0.5.1
 Werkzeug==2.2.3
