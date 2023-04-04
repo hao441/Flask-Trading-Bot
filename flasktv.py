@@ -3,10 +3,12 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 #test env variables
+# webhook_pass="d41d8cd98f00b204e9800998ecf8427e"
 # api_key='NiCJLp1G33Jdus1Rnr'
 # secret_key='ZEVyJNm3rSa2JwrjjT1HY1TXU62gSf3grgAZ'
 
 #prod env variables
+webhook_pass=str(os.getenv('WEBHOOK_PASS'))
 api_key=str(os.getenv('BYBIT_TEST_API_KEY'))
 secret_key=str(os.getenv('BYBIT_TEST_API_SECRET'))
 
@@ -156,23 +158,26 @@ def requestPosition():
 @app.route('/placelong', methods=['POST'])
 def placeLong():
 	data = json.loads(request.data)
+
+	webhook_auth = data["auth_key"]
+
+	if webhook_auth != webhook_pass:
+		return {"reuslt": "fail", "message": "no"}
+
 	leverage = data["leverage"]
 	receivedStopLoss = data["stopLoss"]
-	receivedTakeProfile = data["takeProfit"]		
+	receivedTakeProfit = data["takeProfit"]		
 
 	closePosition("Sell")
 	cancelAllOrders()
 	switchToIsolated(leverage)
 	setLeverage(leverage)
-	
-	stopLossPercentage = 0.1
-	takeProfitPercentage = 0.1
 
 	walletBalance = float(getWalletBalance())
 	currentPrice = float(checkPrice())
-	quantity = str(math.floor((((walletBalance*0.99)*int(leverage))/currentPrice)*100)/100.0)
-	stopLoss = str(round(currentPrice*(1-stopLossPercentage), 2))
-	takeProfit = str(round(currentPrice*(1+takeProfitPercentage),2))
+	quantity = str(math.floor((((walletBalance*0.95)*int(leverage))/currentPrice)*1000)/1000.0)
+	stopLoss = str(round(currentPrice*(1-receivedStopLoss), 2))
+	takeProfit = str(round(currentPrice*(1+receivedTakeProfit),2))
 
 	print(f'wallet balance is: {walletBalance}')
 	print(f'takeprofit is: {takeProfit}')
@@ -183,8 +188,8 @@ def placeLong():
 	# time.sleep(5)
 
 	averagePrice = float(getPosition())
-	updatedStopLoss = str(round(averagePrice*(1-stopLossPercentage), 2))
-	updatedTakeProfit = str(round(averagePrice*(1+takeProfitPercentage),2))
+	updatedStopLoss = str(round(averagePrice*(1-receivedStopLoss), 2))
+	updatedTakeProfit = str(round(averagePrice*(1+receivedTakeProfit),2))
 	tradingStopResponse = tradingStopUpdate(updatedStopLoss,updatedTakeProfit)
 
 	return {"placeOrderResponse":longResponse, "tradingStopResponse":tradingStopResponse}
@@ -192,21 +197,27 @@ def placeLong():
 @app.route('/placeshort', methods=['POST'])
 def placeShort():
 	data = json.loads(request.data)
+
+	webhook_auth = data["auth_key"]
+
+	if webhook_auth != webhook_pass:
+		return {"reuslt": "fail", "message": "no"}
+
 	leverage = data["leverage"]
+	receivedStopLoss = data["stopLoss"]
+	receivedTakeProfit = data["takeProfit"]
+
 
 	closePosition("Buy")
 	cancelAllOrders()
 	switchToIsolated(leverage)
 	setLeverage(leverage)
-	
-	stopLossPercentage = data["stopLoss"]
-	takeProfitPercentage = data["takeProfit"]
 
 	walletBalance = float(getWalletBalance())
 	currentPrice = float(checkPrice())
-	quantity = str(math.floor((((walletBalance*0.99)*int(leverage))/currentPrice)*100)/100.0)
-	stopLoss = str(round(currentPrice*(1+stopLossPercentage), 1))
-	takeProfit = str(round(currentPrice*(1-takeProfitPercentage),1))
+	quantity = str(math.floor((((walletBalance*0.95)*int(leverage))/currentPrice)*1000)/1000.0)
+	stopLoss = str(round(currentPrice*(1+receivedStopLoss), 1))
+	takeProfit = str(round(currentPrice*(1-receivedTakeProfit),1))
 
 	print(f'takeprofit is: {takeProfit}')
 
@@ -216,14 +227,21 @@ def placeShort():
 	# time.sleep(5)
 
 	averagePrice = float(getPosition())
-	updatedStopLoss = str(round(averagePrice*(1+stopLossPercentage), 1))
-	updatedTakeProfit = str(round(averagePrice*(1-takeProfitPercentage),1))
+	updatedStopLoss = str(round(averagePrice*(1+receivedStopLoss), 1))
+	updatedTakeProfit = str(round(averagePrice*(1-receivedTakeProfit),1))
 	tradingStopResponse = tradingStopUpdate(updatedStopLoss,updatedTakeProfit)
 
 	return {"placeOrderResponse":longResponse, "tradingStopResponse":tradingStopResponse}
 
 @app.route('/closelong', methods=['POST'])
 def closeLong():
+	data = json.loads(request.data)
+
+	webhook_auth = data["auth_key"]
+
+	if webhook_auth != webhook_pass:
+		return {"reuslt": "fail", "message": "no"}
+	
 	cancelAllOrders()
 	closeLongResponse = closePosition("Buy")
 	
@@ -233,6 +251,13 @@ def closeLong():
 
 @app.route('/closeshort', methods=['POST'])
 def closeShort():
+	data = json.loads(request.data)
+
+	webhook_auth = data["auth_key"]
+
+	if webhook_auth != webhook_pass:
+		return {"reuslt": "fail", "message": "no"}
+	
 	cancelAllOrders()
 	closeShortResponse = closePosition("Sell")
 
