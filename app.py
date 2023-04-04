@@ -154,7 +154,7 @@ def placeLong():
 
 	walletBalance = float(getWalletBalance())
 	currentPrice = float(checkPrice())
-	quantity = str(round(((walletBalance*0.97)*int(leverage))/currentPrice,1))
+	quantity = str(round(((walletBalance*0.95)*int(leverage))/currentPrice,1))
 	stopLoss = str(round(currentPrice*(1-receivedStopLoss), 1))
 	takeProfit = str(round(currentPrice*(1+receivedTakeProfit),1))
 
