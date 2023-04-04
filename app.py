@@ -142,7 +142,7 @@ def placeLong():
 	data = json.loads(request.data)
 	leverage = data["leverage"]
 	receivedStopLoss = data["stopLoss"]
-	receivedTakeProfile = data["takeProfit"]		
+	receivedTakeProfit = data["takeProfit"]		
 
 	closePosition("Sell")
 	cancelAllOrders()
@@ -154,9 +154,9 @@ def placeLong():
 
 	walletBalance = float(getWalletBalance())
 	currentPrice = float(checkPrice())
-	quantity = str(round(((walletBalance*0.99)*int(leverage))/currentPrice,1))
-	stopLoss = str(round(currentPrice*(1-stopLossPercentage), 1))
-	takeProfit = str(round(currentPrice*(1+takeProfitPercentage),1))
+	quantity = str(round(((walletBalance*0.97)*int(leverage))/currentPrice,1))
+	stopLoss = str(round(currentPrice*(1-receivedStopLoss), 1))
+	takeProfit = str(round(currentPrice*(1+receivedTakeProfit),1))
 
 	print(f'takeprofit is: {takeProfit}')
 
@@ -166,8 +166,8 @@ def placeLong():
 	# time.sleep(5)
 
 	averagePrice = float(getPosition())
-	updatedStopLoss = str(round(averagePrice*(1-stopLossPercentage), 1))
-	updatedTakeProfit = str(round(averagePrice*(1+takeProfitPercentage),1))
+	updatedStopLoss = str(round(averagePrice*(1-receivedStopLoss), 1))
+	updatedTakeProfit = str(round(averagePrice*(1+receivedTakeProfit),1))
 	tradingStopResponse = tradingStopUpdate(updatedStopLoss,updatedTakeProfit)
 
 	return {"placeOrderResponse":longResponse, "tradingStopResponse":tradingStopResponse}
